@@ -1,57 +1,83 @@
 import React from 'react';
 import Botao from '../botao';
 import style from './Formulario.module.scss';
+import axios from  'axios';
+
 
 class Formulario extends React.Component {
     state={
-        tarefa:"",
-        tempo:"00:00"
-    }
+        Nome:"",
+        Email:"",
+        Senha:"" 
+    };
 
-    adicionarTarefa(evento: React.FormEvent<HTMLFormElement>){
+    async adicionarUsuario(evento: React.FormEvent<HTMLElement>) {
         evento.preventDefault();
 
-    }
-
-    render(){
-        return(
-        <form className={style.novaTarefa} onSubmit={this.adicionarTarefa}>
-            <div className={style.inputContainer}>
-                <label htmlFor="tarefa">
-                    Adicione um novo estudo
-                </label>
+        try {
+            const response = await axios.post('http://localhost:3000/usuarios', {
+              nome: this.state.Nome,
+              email: this.state.Email,
+              senha: this.state.Senha
+            });
+      
+            console.log('Usuário cadastrado :', response.data);
+            
+            this.setState({ nome: "", email: "", senha: "" });
+      
+            alert('Usuário cadastrado!');
+          } catch (error) {
+            console.error('Erro no cadastrar do usuário:', error);
+            alert('Erro no cadastro do usuário');
+          }
+        }
+      
+        render() {
+          return (
+            <form className={style.novoUsuario} onSubmit={this.adicionarUsuario.bind(this)}>
+              <div className={style.inputContainer}>
+                <label htmlFor="nome">Nome usuário</label>
                 <input
-                type ="text"
-                name="tarefa"
-                id="tarefa"
-                value={this.state.tarefa}
-                onChange={evento => this.setState({...this.state,tarefa:evento.target.value})}
-                placeholder="O que você quer estudar"
-                required
+                  type="text"
+                  name="nome"
+                  id="nome"
+                  value={this.state.Nome}
+                  onChange={(evento) => this.setState({ nome: evento.target.value })}
+                  placeholder="Nome do Usuário"
+                  required
                 />
-            </div>
-            <div className={style.inputContainer}>
-                <label htmlFor="tempo"> 
-                  Tempo
-                </label>
+              </div>
+              
+              <div className={style.inputContainer}>
+                <label htmlFor="email">E-mail</label>
                 <input
-                type="time"
-                step="1"
-                name="tempo"
-                value={this.state.tempo}
-                onChange={evento => this.setState({...this.state, tempo: evento.target.value})}
-                id="tempo"
-                min="00:00:00"
-                max="01:30:00"
-                required
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={this.state.Email}
+                  onChange={(evento) => this.setState({ email: evento.target.value })}
+                  placeholder="E-mail do Usuário"
+                  required
                 />
-            </div>
-            <Botao type="submit">
-            Adicionar
-            </Botao>
-        </form>
-        )
-    }
-}
+              </div>
+      
+              <div className={style.inputContainer}>
+                <label htmlFor="senha">Senha</label>
+                <input
+                  type="password"
+                  name="senha"
+                  id="senha"
+                  value={this.state.Senha}
+                  onChange={(evento) => this.setState({ senha: evento.target.value })}
+                  required
+                />
+              </div>
+              <div className={style.inputContainer}>
+                <Botao>Cadastrar</Botao>
+              </div>
+            </form>
+          );
+        }
+      }
 
 export default Formulario;

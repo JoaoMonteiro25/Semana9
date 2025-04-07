@@ -1,17 +1,17 @@
-import React from 'react';
-import Cronometro from '../components/Cronometro';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Formulario from '../components/Formulario';
-import Lista from '../components/Lista';
-import style from  './app.module.scss';
+import ListarUsuarios from './ListarUsuarios/ListarUsuarios';
 
 function App() {
   return (
-    <div className={style.AppStyle}>
-    <Formulario />
-    <Lista />
-    <Cronometro />
-    
-   </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/cadastro" element={<Formulario />} />
+          <Route path="/usuarios" element={<ListarUsuarios />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
