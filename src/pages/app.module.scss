@@ -2,9 +2,8 @@
     display: grid;
     grid-template-rows: min-content min-content auto;
     grid-template-areas: 
-    "nova-tarefa"
-    "cronometro"
-    "tarefas"
+    "novo-usuario"
+    "usuarios"
     ;
     row-gap: 24px;
     min-width: 320px;
