@@ -1,7 +1,7 @@
 .novoUsuario {
   display: flex;
   flex-direction: column;
-  background-color: #3a4a65; /* Cor mais neutra e suave para o fundo */
+  background-color: #3a4a65; 
   border-radius: 8px;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -11,7 +11,7 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    background-color: #2a3b52; /* Mudança sutil de cor no hover */
+    background-color: #2a3b52; 
     box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.3);
   }
 
@@ -25,7 +25,7 @@
       font-size: 1.1rem;
       font-weight: bold;
       margin-bottom: 8px;
-      color: #e0e0e0; /* Cor do texto do label */
+      color: #e0e0e0; 
     }
 
     input {
