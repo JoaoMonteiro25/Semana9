@@ -1,22 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Formulario from '../components/Formulario';
-import ListarUsuarios from './ListarUsuarios/ListarUsuarios';
+import {  BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Menu from '../components/Menu/menu';
 import React from 'react';
+import CadastroProduto from './Produto/CadastroProduto';
+import CadastroUsuario from './Usuario/CadastroUsuario';
+import ListaProdutos from '../pages/Produto/ListaProduto';
+import Autenticacao from './Autenticacao';
+import ListaUsuarios from './Usuario/ListaUsuario';
 
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-      <Menu />
-      <Routes>
-          <Route path="/cadastro" element={<Formulario />} />
-          <Route path="/usuarios" element={<ListarUsuarios />} />
+    <Router>
+      <div className='App'>
+        <Menu />
+        <div>
+          <h1>Bem-vindo 
+            !</h1>
+          <p>Gerencie usuários e produtos de forma simples e eficiente.</p>
+        </div>
+        <Routes>
+          <Route path='/' element={<Autenticacao />} />
+          <Route path='/usuarios/cadastro' element={<CadastroUsuario />} />
+          <Route path='/usuarios' element={<ListaUsuarios />} />
+          <Route path='/produtos/cadastro' element={<CadastroProduto />} />
+          <Route path='/produtos' element={<ListaProdutos />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
-
-export default App;
