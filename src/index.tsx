@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './pages/App';
 import { AuthProvider } from './contexts/autContext';
+import { RecoilRoot } from 'recoil';
 
 
 const root = ReactDOM.createRoot(
@@ -10,8 +11,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+  <RecoilRoot>
     <AuthProvider>
       <App />
     </AuthProvider>
-  </React.StrictMode>,
+  </RecoilRoot>
+</React.StrictMode>,
 );
